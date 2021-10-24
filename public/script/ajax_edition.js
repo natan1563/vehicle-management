@@ -1,6 +1,7 @@
-$('#formRegister').submit((event) => {
+$('#formEdit').submit((event) => {
   event.preventDefault();
   
+  const id = $('#id').val();
   const owner_name = $('#owner_name').val();
   const color_id = parseInt($('#color_id').val());
   const model = $('#model').val();
@@ -12,21 +13,22 @@ $('#formRegister').submit((event) => {
   }
    
   $.ajax({
-    url: "/newRegister",
+    url: "/editVehicle",
     type: 'POST',
     dataType: 'json',
     data: {
+      id,
       owner_name,
       color_id,
       model,
       plate
     },
     statusCode: {
-      201: function() {
-        alert('Veículo registrado com sucesso!');
+      204: function() {
+        alert('Veículo atualizado com sucesso!');
       },
       409: function() {
-        alert('Falha ao registrar, tente novamente!');
+        alert('Falha ao atualizar, tente novamente!');
       }
     }
   });

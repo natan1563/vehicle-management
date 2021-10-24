@@ -12,13 +12,16 @@ class Router
 
     public static function get(string $route, string $rawPathFile, array $params = []): array 
     {
-        $pathFile =  __VIEW__ .  $rawPathFile;
         self::setNewRoute($route);
-        return [
+        $endPoint = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
+        
+        $pathFile =  __VIEW__ .  $rawPathFile;
+        $dataRoute = [
             'route'  => $route, 
             'path'   => str_replace('\\', DIRECTORY_SEPARATOR, $pathFile),
             'params' => $params,
         ];
+        return ($endPoint === $route) ? $dataRoute : [];
     }
 
     public static function post(string $route, array $params = []) 
@@ -30,15 +33,24 @@ class Router
 
         if(count($params) > 0)
             extract($params);
-        
+
         switch ($route) {
             case '/newRegister':
-              $code  = (new Vehicles)->vehicleRegistration($_POST) ? 201 : 409;
-              http_response_code($code);
-              return json_encode([
-                 'msg' => 'Veículo registrado com sucesso!' 
-              ]);
-            break;
+                $code  = (new Vehicles)->vehicleRegistration($_POST) ? 201 : 409;
+                http_response_code($code);
+                return json_encode([
+                    'msg' => 'Veículo registrado com sucesso!' 
+                ]);
+
+            case '/editVehicle': 
+                $code  = (new Vehicles)->vehicleUpdate($_POST) ? 204 : 409;
+                http_response_code($code);
+                return json_encode([
+                    'msg' => 'Veículo atualizado com sucesso!' 
+                ]);
+            
+            default: 
+                    http_response_code(500);
         }
     }
 

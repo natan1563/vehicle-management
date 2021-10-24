@@ -9,8 +9,8 @@ class Render
     public function htmlRender(array $router)
     {
         $currentRoute = (isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI']);
-
-        if ($currentRoute === $router['route']) {
+        
+        if (count($router) && $currentRoute === $router['route']) {
             try {
                 if (!file_exists($router['path']))
                     throw new \Exception('Arquivo inexistente', 500);

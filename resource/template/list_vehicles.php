@@ -22,13 +22,13 @@
       <td><?=$vehicle->plate;?></td>
       <td><?=date('d/m/Y', strtotime($vehicle->inserted_at));?></td>
       <td>
-        <a href="/vehicle/edit/<?=$vehicle->id?>">
+        <a href="/vehicle/edit?vehicle_id=<?=$vehicle->id?>">
           <span class="material-icons px-1">
           mode
           </span>
         </a>
 
-        <a href="/vehicle/delete/<?=$vehicle->id?>">
+        <a href="/vehicle/delete?vehicle_id=<?=$vehicle->id?>">
           <span class="material-icons px-1">
             delete_outline
           </span>
