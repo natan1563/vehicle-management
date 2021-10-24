@@ -22,8 +22,7 @@ class ConnectionCreator
 
         $this->conn = $connect;
     } catch (PDOException $except) {
-        echo $except->getMessage();
         echo 'Erro ao se conectar ao banco de dados, tente novamente mais tarde';
     }
-}
+  }
 }
