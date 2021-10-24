@@ -1,5 +1,5 @@
 <div class="container">
-<h1 class="text-center pb-3">Todos Veiculos</h1>
+<h1 class="text-center pb-4">Todos Veículos</h1>
 <table class="table border">
   <thead>
     <tr class="text-center">
@@ -35,6 +35,6 @@
   </tbody>
 </table>
 
-<a href="javascript:window.print()" class="btn btn-sm btn-info px-3 py-1">Imprimir</a>
+<a href="javascript:window.print()" class="btn btn-sm mt-3 btn-info px-3 py-2">Imprimir</a>
 </div>
 <script src="../script/ajax_delete.js"></script>
