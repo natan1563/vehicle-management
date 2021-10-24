@@ -23,15 +23,11 @@
       <td><?=date('d/m/Y', strtotime($vehicle->inserted_at));?></td>
       <td>
         <a href="/vehicle/edit?vehicle_id=<?=$vehicle->id?>">
-          <span class="material-icons px-1">
-          mode
-          </span>
+          <span class="material-icons px-1">mode</span>
         </a>
-
-        <a href="/vehicle/delete?vehicle_id=<?=$vehicle->id?>">
-          <span class="material-icons px-1">
-            delete_outline
-          </span>
+        <a href="/remove" class="action_delete">
+          <input type="hidden" name="vehicle_id" class="vehicle_id" value="<?=$vehicle->id?>">
+          <span class="material-icons px-1"> delete_outline</span>
         </a>
       </td>
     </tr>
@@ -39,5 +35,6 @@
   </tbody>
 </table>
 
-<button class="btn btn-sm btn-info px-3 py-1">Imprimir</button>
+<a href="javascript:window.print()" class="btn btn-sm btn-info px-3 py-1">Imprimir</a>
 </div>
+<script src="../script/ajax_delete.js"></script>

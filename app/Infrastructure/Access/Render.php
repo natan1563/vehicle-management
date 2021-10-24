@@ -32,6 +32,7 @@ class Render
         ob_start();
         include_once (__DIR__ . '/../../../resource/layout/main/error_404.html');
         echo ob_get_clean();
+        http_response_code(404);
         return;
     }
 }

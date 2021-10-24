@@ -26,6 +26,7 @@ $render->htmlRender(Router::get('/vehicle/edit', 'template/edit.php', [
 
 Router::post('/newRegister');
 Router::post('/editVehicle');
+Router::post('/remove');
 
 if (!in_array($currentRoute, Router::getAllRoutes())) 
   $render->htmlRenderNotFound();

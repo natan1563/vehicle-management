@@ -26,6 +26,7 @@ class Router
 
     public static function post(string $route, array $params = []) 
     {
+        self::setNewRoute($route);
         $endPoint = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
 
         if ($endPoint !== $route)
@@ -48,7 +49,14 @@ class Router
                 return json_encode([
                     'msg' => 'Veículo atualizado com sucesso!' 
                 ]);
-            
+
+            case '/remove':
+                $code  = (new Vehicles)->vehicleRemove($_POST['id'] ?? 0) ? 200 : 409;
+                http_response_code($code);
+                return json_encode([
+                    'msg' => 'Veículo removido com sucesso!' 
+                ]);
+
             default: 
                     http_response_code(500);
         }

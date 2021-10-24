@@ -26,6 +26,7 @@ $('#formEdit').submit((event) => {
     statusCode: {
       204: function() {
         alert('Veículo atualizado com sucesso!');
+        window.location = '/';
       },
       409: function() {
         alert('Falha ao atualizar, tente novamente!');
